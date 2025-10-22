@@ -1,34 +1,45 @@
 <template>
-  <div class="roulette-container">
-    <h2>🚢 Quelle pizza du Vieux Pressoir?</h2>
+  <div class="app-container">
+    <PersonnesList :personnes="personnes" />
 
-    <div class="roulette-wrapper">
-      <div class="arrow"></div>
-      <div class="roulette-window">
-        <div class="roulette-list" :style="{ transform: `translateY(-${position}px)` }">
-          <div v-for="(pizza, index) in pizzas" :key="'1-' + index" class="roulette-item">
-            {{ pizza.nom }}
-          </div>
-          <div v-for="(pizza, index) in pizzas" :key="'2-' + index" class="roulette-item">
-            {{ pizza.nom }}
+    <div class="roulette-container">
+      <h2>🚢 Pizza Roulette aux Vieux Pressoir 🍕</h2>
+
+      <div class="roulette-wrapper">
+        <div class="arrow"></div>
+        <div class="roulette-window">
+          <div class="roulette-list" :style="{ transform: `translateY(-${position}px)` }">
+            <div v-for="(pizza, index) in pizzas" :key="'1-' + index" class="roulette-item">
+              {{ pizza.nom }}
+            </div>
+            <div v-for="(pizza, index) in pizzas" :key="'2-' + index" class="roulette-item">
+              {{ pizza.nom }}
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <button @click="lancerRoulette" :disabled="enCours">🎲 Lance !</button>
+      <button @click="lancerRoulette" :disabled="enCours">Lance !</button>
 
-    <div v-if="resultat" class="resultat">
-      🍕 <strong>{{ resultat }}</strong>
-      <p class="ingredients">{{ ingredients }}</p>
+      <div v-if="resultat" class="resultat">
+         Tu as tiré la <strong> {{ resultat }} </strong> ! 
+        <p class="ingredients">{{ ingredients }}</p>
+      </div>
+
+      <PizzasList class="pizzas-liste" />
     </div>
   </div>
 </template>
 
+
 <script setup lang="ts">
 import { ref } from 'vue'
 import { pizzas } from '@/data/pizzas'
+import { personnes as personnesData } from '@/data/personnes'
+import PersonnesList from '@/components/PersonnesList.vue'
+import PizzasList from '@/components/PizzasList.vue'
 
+const personnes = ref(personnesData)
 const position = ref(0)
 const resultat = ref('')
 const ingredients = ref('')
@@ -49,7 +60,7 @@ const lancerRoulette = () => {
   const centerOffset = (windowHeight - itemHeight) / 2
   const distance = (tours * total + randomIndex) * itemHeight - centerOffset
 
-  const duration = 4000
+  const duration = 3000
   const start = performance.now()
 
   const animate = (time: number) => {
@@ -72,21 +83,26 @@ const lancerRoulette = () => {
 </script>
 
 <style scoped>
+.app-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 2rem;
+  font-family: sans-serif;
+}
+
 .roulette-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: sans-serif;
   text-align: center;
-  padding: 2rem 0;
   gap: 1.5rem;
 }
 
-/* TITRE */
 h2 {
   font-size: 1.8rem;
   font-weight: bold;
-  margin-bottom: 0.5rem;
 }
 
 .roulette-wrapper {
@@ -168,5 +184,18 @@ button:disabled {
   font-size: 1rem;
   color: #555;
   max-width: 400px;
+}
+
+@media (max-width: 1100px) {
+  .app-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
 }
 </style>
