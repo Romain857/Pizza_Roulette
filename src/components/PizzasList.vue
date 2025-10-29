@@ -1,34 +1,71 @@
 <template>
   <div class="pizza-list">
     <h3>🍕 Pizzas</h3>
-    <ul>
-      <li v-for="(pizza, index) in pizzas" :key="index" class="pizza-item">
-        <strong>{{ pizza.nom }}</strong>
-        <p>{{ pizza.ingredients }}</p>
-      </li>
-    </ul>
+
+    <div class="pizza-section">
+      <h4>🍅 Base tomate</h4>
+      <ul>
+        <li v-for="(pizza, index) in pizzasTomate" :key="'tomate-' + index" class="pizza-item">
+          <strong>{{ pizza.nom }}</strong>
+          <p class="ingredients">{{ pizza.ingredients }}</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="pizza-section">
+      <h4>🍶 Base crème</h4>
+      <ul>
+        <li v-for="(pizza, index) in pizzasCreme" :key="'creme-' + index" class="pizza-item">
+          <strong>{{ pizza.nom }}</strong>
+          <p class="ingredients">{{ pizza.ingredients }}</p>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { pizzas } from '@/data/pizzas'
+import { computed } from 'vue'
+import { pizzas } from '@/data/Pizzas/pizzas_AuVieuxPressoir'
+
+const pizzasTomate = computed(() => pizzas.filter((p) => p.base === 'tomate'))
+const pizzasCreme = computed(() => pizzas.filter((p) => p.base === 'creme'))
 </script>
 
 <style scoped>
 .pizza-list {
-  top: 1rem;
-  left: 2rem;
+  margin-top: 2rem;
   background: #fff;
   border: 2px solid #ddd;
   border-radius: 10px;
-  padding: 1rem 1.5rem;
+  padding: 1.2rem 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 800px;
 }
 
-.pizza-list h3 {
+h3 {
   text-align: center;
-  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.pizza-section {
+  margin-bottom: 1.5rem;
+}
+
+.pizza-section h4 {
   font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.3rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .pizza-item {
@@ -40,23 +77,27 @@ import { pizzas } from '@/data/pizzas'
   border-bottom: none;
 }
 
-.pizza-item strong {
+strong {
   display: block;
   font-size: 1rem;
   color: #333;
 }
 
-.pizza-item p {
+.ingredients {
   font-size: 0.9rem;
   color: #555;
   margin-top: 0.2rem;
 }
 
-@media (max-width: 1100px) {
+/* Responsive */
+@media (max-width: 600px) {
   .pizza-list {
-    position: static;
-    width: 90%;
-    max-width: 350px;
+    width: 95%;
+    padding: 1rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
   }
 }
 </style>

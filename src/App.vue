@@ -9,11 +9,20 @@
         <div class="arrow"></div>
         <div class="roulette-window">
           <div class="roulette-list" :style="{ transform: `translateY(-${position}px)` }">
-            <div v-for="(pizza, index) in pizzas" :key="'1-' + index" class="roulette-item">
-              {{ pizza.nom }}
-            </div>
-            <div v-for="(pizza, index) in pizzas" :key="'2-' + index" class="roulette-item">
-              {{ pizza.nom }}
+            <div
+              v-for="(pizza, index) in [...pizzas, ...pizzas]"
+              :key="index"
+              class="roulette-item"
+            >
+              <span class="pizza-name">
+                {{ pizza.nom }}
+                <span
+                  class="base-icon"
+                  :title="pizza.base === 'tomate' ? 'Base tomate' : 'Base crème'"
+                >
+                  {{ pizza.base === 'tomate' ? '🍅' : '🍶' }}
+                </span>
+              </span>
             </div>
           </div>
         </div>
@@ -22,7 +31,7 @@
       <button @click="lancerRoulette" :disabled="enCours">Lance !</button>
 
       <div v-if="resultat" class="resultat">
-         Tu as tiré la <strong> {{ resultat }} </strong> ! 
+        Tu as tiré la <strong> {{ resultat }} </strong> !
         <p class="ingredients">{{ ingredients }}</p>
       </div>
 
@@ -31,10 +40,9 @@
   </div>
 </template>
 
-
 <script setup lang="ts">
 import { ref } from 'vue'
-import { pizzas } from '@/data/pizzas'
+import { pizzas } from '@/data/Pizzas/pizzas_AuVieuxPressoir'
 import { personnes as personnesData } from '@/data/personnes'
 import PersonnesList from '@/components/PersonnesList.vue'
 import PizzasList from '@/components/PizzasList.vue'
@@ -60,7 +68,7 @@ const lancerRoulette = () => {
   const centerOffset = (windowHeight - itemHeight) / 2
   const distance = (tours * total + randomIndex) * itemHeight - centerOffset
 
-  const duration = 3000
+  const duration = 4000
   const start = performance.now()
 
   const animate = (time: number) => {

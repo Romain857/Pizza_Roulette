@@ -1,0 +1,62 @@
+export const pizzas = [
+  { nom: 'Capri', base: 'tomate', ingredients: 'jambon, olives, origan' },
+  { nom: '4 Fromages', base: 'tomate', ingredients: 'chèvre, roquefort, reblochon, origan' },
+  {
+    nom: 'Savoyarde',
+    base: 'crème',
+    ingredients: 'pommes de terre, reblochon, lardons, crème, origan, persillade',
+  },
+  { nom: 'Norvégienne', base: 'crème', ingredients: 'saumon fumé, crème, origan, persillade' },
+  {
+    nom: 'Bretonne',
+    base: 'crème',
+    ingredients: 'saumon fumé, crème, noix de Saint-Jacques, origan, persillade',
+  },
+  { nom: 'Mamma', base: 'tomate', ingredients: 'chorizo, câpres, oignons, origan' },
+  { nom: 'Marguerite', base: 'tomate', ingredients: 'origan' },
+  { nom: 'Cannibale', base: 'crème', ingredients: 'pommes de terre, bœuf haché, crème, origan' },
+  { nom: 'Bolognaise', base: 'tomate', ingredients: 'champignons, bolognaise, crème, origan' },
+  { nom: 'Réale', base: 'crème', ingredients: 'jambon, champignons, crème, origan' },
+  { nom: 'Régina', base: 'tomate', ingredients: 'jambon, champignons, origan' },
+  {
+    nom: 'Calzone (chausson)',
+    base: 'tomate',
+    ingredients: 'jambon, champignons, œuf, crème, origan',
+  },
+  { nom: 'Tana', base: 'tomate', ingredients: 'poivrons, oignons, chorizo, origan' },
+  { nom: 'Emilia', base: 'tomate', ingredients: 'chorizo, jambon, champignons, origan' },
+  { nom: 'Maria', base: 'crème', ingredients: 'jambon, oignons, crème, origan' },
+  { nom: 'Campanella', base: 'tomate', ingredients: 'lardons, oignons, origan' },
+  {
+    nom: 'Montagnarde',
+    base: 'crème',
+    ingredients: 'pommes de terre, saucisse fumée, reblochon, crème, origan, persillade',
+  },
+  {
+    nom: 'Nantaise',
+    base: 'crème',
+    ingredients: 'pommes de terre, crème, andouille, reblochon, origan',
+  },
+  {
+    nom: 'Périgourdine',
+    base: 'crème',
+    ingredients:
+      'pommes de terre, champignons, lardons, magret de canard, reblochon, crème, origan, persillade',
+  },
+  { nom: 'Kébab', base: 'crème', ingredients: 'viande kebab, oignons, crème, origan' },
+  {
+    nom: 'Printanière',
+    base: 'crème',
+    ingredients: 'poivrons, champignons, oignons, courgettes grillées, origan',
+  },
+  { nom: 'Fermière', base: 'crème', ingredients: 'poulet épicé, pommes de terre, crème, origan' },
+  { nom: 'Spéciale', base: 'tomate', ingredients: 'thon, origan, persillade' },
+  { nom: 'Hawaïenne', base: 'crème', ingredients: 'ananas, poulet épicé, crème, origan' },
+  {
+    nom: 'Aoste',
+    base: 'crème',
+    ingredients: 'pommes de terre, reblochon, crème, jambon Aoste, origan',
+  },
+  { nom: 'Mexicaine', base: 'tomate', ingredients: 'oignons, poivrons, merguez, olives, origan' },
+  { nom: 'Napoli', base: 'tomate', ingredients: 'anchois, olives, origan' },
+]

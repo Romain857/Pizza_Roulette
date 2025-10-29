@@ -1,6 +1,6 @@
 <template>
   <div class="personnes-liste">
-    <h3>👥 Joueurs</h3>
+    <h3>👥 Clients du jour</h3>
     <ul>
       <li v-for="(personne, index) in personnes" :key="index" class="personne-item">
         <label class="personne-label">
