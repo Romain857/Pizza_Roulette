@@ -57,6 +57,7 @@ h3 {
   cursor: pointer;
   appearance: none;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  color: black;
 }
 
 .maps-link {

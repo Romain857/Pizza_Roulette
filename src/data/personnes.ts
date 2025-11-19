@@ -7,7 +7,18 @@ export const personnes = [
   },
   {
     nom: 'Benjamin',
-    ingredientsDislikes: ['lardon'],
+    ingredientsDislikes: [
+      'ananas',
+      'champignon',
+      'anchois',
+      'lardons',
+      'cœur d’artichaut',
+      'chèvre',
+      'mortadella',
+      'camembert',
+      'andouille',
+      'saucisse fumée',
+    ],
     joker: 1,
     photo: '/images/personnes/benjamin.jpg',
   },
@@ -22,6 +33,12 @@ export const personnes = [
     ingredientsDislikes: [],
     joker: 3,
     photo: '/images/personnes/hugues.png',
+  },
+  {
+    nom: 'Nicolas',
+    ingredientsDislikes: [],
+    joker: 3,
+    photo: '/images/personnes/nicolas.jpg',
   },
   {
     nom: 'Pierre',

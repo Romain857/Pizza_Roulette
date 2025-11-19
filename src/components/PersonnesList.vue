@@ -81,6 +81,7 @@ const personneCourante = computed(() => props.personnes.find((p) => p.nom === se
   cursor: pointer;
   appearance: none;
   margin-bottom: 1rem;
+  color: black;
 }
 
 h3 {
