@@ -18,22 +18,28 @@ export const personnes = [
     photo: '/images/personnes/gael.jpg',
   },
   {
+    nom: 'Hugues',
+    ingredientsDislikes: [],
+    joker: 3,
+    photo: '/images/personnes/hugues.png',
+  },
+  {
     nom: 'Pierre',
     ingredientsDislikes: [],
     joker: 3,
     photo: '/images/personnes/pierre.jpg',
   },
   {
+    nom: 'Emmanuel',
+    ingredientsDislikes: [],
+    joker: 3,
+    photo: '/images/personnes/emmanuel.gif',
+  },
+  {
     nom: 'Roman',
     ingredientsDislikes: [],
     joker: 2,
     photo: '/images/personnes/roman.jpg',
-  },
-  {
-    nom: 'Emmanuel',
-    ingredientsDislikes: [],
-    joker: 3,
-    photo: '/images/personnes/emmanuel.jpg',
   },
   {
     nom: 'Hervé',
