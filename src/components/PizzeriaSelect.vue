@@ -5,7 +5,7 @@
       Pizzeria
     </h3>
 
-    <select v-model="model" class="select-pizzeria">
+    <select v-model="model" :disabled="props.disabled" class="select-pizzeria">
       <option value="vieux">Au Vieux Pressoir</option>
       <option value="chat">Le Chat qui Guette</option>
     </select>
@@ -15,6 +15,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+const props = defineProps<{ disabled?: boolean }>()
 const model = defineModel<'vieux' | 'chat'>()
 
 const mapsLinks = {

@@ -1,8 +1,8 @@
 <template>
   <div class="personnes-liste">
-    <h3>🙍 Liste des clients</h3>
+    <h3>🙍 Clients du jour</h3>
 
-    <select v-model="selected" class="select-personne">
+    <select v-model="selected" :disabled="disabled" class="select-personne">
       <option disabled value="">Sélectionner une personne</option>
       <option v-for="p in personnes" :key="p.nom" :value="p.nom">
         {{ p.nom }}
@@ -10,6 +10,13 @@
     </select>
 
     <div v-if="personneCourante" class="details">
+      <img
+        v-if="personneCourante.photo"
+        :src="personneCourante.photo"
+        class="avatar"
+        alt="Photo de la personne"
+      />
+
       <p v-if="personneCourante.ingredientsDislikes.length">
         ❌ N’aime pas : {{ personneCourante.ingredientsDislikes.join(', ') }}
       </p>
@@ -30,11 +37,12 @@ const props = defineProps<{
     nom: string
     ingredientsDislikes: string[]
     joker: number
+    photo?: string
   }[]
+  disabled?: boolean
 }>()
 
 const model = defineModel<string | ''>()
-
 const selected = model
 
 const personneCourante = computed(() => props.personnes.find((p) => p.nom === selected.value))
@@ -53,10 +61,14 @@ const personneCourante = computed(() => props.personnes.find((p) => p.nom === se
   width: 260px;
 }
 
-h3 {
-  text-align: center;
-  font-size: 1.2rem;
-  margin-bottom: 0.7rem;
+.avatar {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0.5rem auto;
+  display: block;
+  border: 2px solid #ccc;
 }
 
 .select-personne {
@@ -68,14 +80,17 @@ h3 {
   background: linear-gradient(#fafafa, #f0f0f0);
   cursor: pointer;
   appearance: none;
-  padding-right: 35px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 1rem;
 }
 
+h3 {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 0.7rem;
+}
+
 .details {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
+  text-align: center;
 }
 
 .ok {

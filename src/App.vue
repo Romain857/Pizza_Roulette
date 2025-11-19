@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
-    <PizzeriaSelect v-model="selectedPizzeria" />
-    <PersonnesList v-model="selectedName" :personnes="personnes" />
+    <PizzeriaSelect v-model="selectedPizzeria" :disabled="enCours" />
+    <PersonnesList v-model="selectedName" :personnes="personnes" :disabled="enCours" />
 
     <div class="roulette-container">
       <h2>🚢 Pizza Roulette – {{ nomPizzeria }} 🍕</h2>
@@ -32,12 +32,26 @@
       <button @click="lancerRoulette" :disabled="enCours">Lance !</button>
 
       <div v-if="resultat" class="resultat">
-        Tu as tiré la <strong> {{ resultat }} </strong> !
+        <div class="resultat-header">
+          <img
+            v-if="personneSelectionnee?.photo"
+            :src="personneSelectionnee.photo"
+            alt="Photo"
+            class="avatar-resultat"
+          />
+          <span>
+            {{ personneSelectionnee?.photo ? '' : 'Tu' }}
+            a tiré la :
+            <strong>{{ resultat }}</strong> !
+          </span>
+        </div>
+
         <p class="ingredients">{{ ingredients }}</p>
 
         <div v-if="personneSelectionnee" class="joker-info">
           <template v-if="personneSelectionnee.joker > 0">
-            🎟️ Il te reste <strong>{{ personneSelectionnee.joker }}</strong> joker<span
+            🎟️ Il te reste
+            <strong>{{ personneSelectionnee.joker }}</strong> joker<span
               v-if="personneSelectionnee.joker > 1"
               >s</span
             >.
@@ -52,7 +66,6 @@
           </template>
         </div>
       </div>
-
       <PizzasList class="pizzas-liste" :pizzas="pizzasActives" />
     </div>
   </div>
@@ -257,6 +270,22 @@ button:disabled {
   border-radius: 6px;
   font-size: 0.95rem;
   color: #7a5c00;
+}
+
+.resultat-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-bottom: 0.5rem;
+}
+
+.avatar-resultat {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
 }
 
 @media (max-width: 1300px) {
