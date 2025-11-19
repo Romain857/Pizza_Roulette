@@ -127,35 +127,35 @@ export const pizzas = [
     nom: 'Terre et mer',
     ingredients:
       'Crème fraiche, mozzarella, Saint-Jacques, chorizo, origan Après cuisson : grana padano',
-    base: 'creme',
+    base: 'crème',
   },
   {
     nom: 'Salmon (façon calzone)',
     ingredients: 'Crème fraiche, mozzarella, champignons, saumon fumé, origan',
-    base: 'creme',
+    base: 'crème',
   },
   {
     nom: 'Carbonara',
     ingredients:
       'Crème fraiche, mozzarella, lardons, origan Après cuisson : 3 jaunes d’œufs, grana padano',
-    base: 'creme',
+    base: 'crème',
   },
   {
     nom: 'Tartinantaise',
     ingredients:
       'Crème fraiche, mozzarella, pommes de terre, lardons, oignons rouges, curé Nantais, origan',
-    base: 'creme',
+    base: 'crème',
   },
   {
     nom: 'Nordique',
     ingredients:
       'Crème fraiche, mozzarella, origan Après cuisson : saumon fumé, roquette, sauce basilic, grana padano',
-    base: 'creme',
+    base: 'crème',
   },
   {
     nom: 'Normande',
     ingredients:
       'Crème fraiche, mozzarella, camembert (Normandie), jambon blanc, origan Après cuisson : mâche Nantaise, oignons frits',
-    base: 'creme',
+    base: 'crème',
   },
 ]

@@ -1,24 +1,43 @@
 <template>
   <div class="personnes-liste">
-    <h3>👥 Clients du jour</h3>
-    <ul>
-      <li v-for="(personne, index) in personnes" :key="index" class="personne-item">
-        <label class="personne-label">
-          <input type="checkbox" v-model="personne.present" />
-          <strong>{{ personne.nom }}</strong>
-        </label>
+    <h3>🙍 Liste des clients</h3>
 
-        <p v-if="personne.ingredientsDislikes.length">
-          ❌ {{ personne.ingredientsDislikes.join(', ') }}
-        </p>
-        <p v-else class="ok">👍 Aime tout</p>
-      </li>
-    </ul>
+    <select v-model="selected" class="select-personne">
+      <option disabled value="">Sélectionner une personne</option>
+      <option v-for="p in personnes" :key="p.nom" :value="p.nom">
+        {{ p.nom }}
+      </option>
+    </select>
+
+    <div v-if="personneCourante" class="details">
+      <p v-if="personneCourante.ingredientsDislikes.length">
+        ❌ N’aime pas : {{ personneCourante.ingredientsDislikes.join(', ') }}
+      </p>
+      <p v-else class="ok">👍 Aime tout</p>
+
+      <p class="joker">
+        🎟️ {{ personneCourante.joker }} joker<span v-if="personneCourante.joker > 1">s</span>
+      </p>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { personnes } from '@/data/personnes'
+import { computed } from 'vue'
+
+const props = defineProps<{
+  personnes: {
+    nom: string
+    ingredientsDislikes: string[]
+    joker: number
+  }[]
+}>()
+
+const model = defineModel<string | ''>()
+
+const selected = model
+
+const personneCourante = computed(() => props.personnes.find((p) => p.nom === selected.value))
 </script>
 
 <style scoped>
@@ -29,67 +48,53 @@ import { personnes } from '@/data/personnes'
   background: #fff;
   border: 2px solid #ddd;
   border-radius: 10px;
-  padding: 1rem 1.5rem;
+  padding: 0rem 1.5rem 1rem 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  width: 220px;
+  width: 260px;
 }
 
 h3 {
   text-align: center;
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.7rem;
 }
 
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.personne-item {
-  border-bottom: 1px solid #eee;
-  padding: 0.5rem 0;
-}
-
-.personne-item:last-child {
-  border-bottom: none;
-}
-
-.personne-label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-}
-
-.personne-label input[type='checkbox'] {
-  width: 18px;
-  height: 18px;
-  accent-color: #3b82f6;
-  cursor: pointer;
-}
-
-strong {
+.select-personne {
+  width: 100%;
+  padding: 10px 12px;
   font-size: 1rem;
-  color: #333;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background: linear-gradient(#fafafa, #f0f0f0);
+  cursor: pointer;
+  appearance: none;
+  padding-right: 35px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
 }
 
-p {
+.details {
+  margin-top: 0.5rem;
   font-size: 0.9rem;
-  color: #555;
-  margin: 0.2rem 0 0;
 }
 
 .ok {
   color: #16a34a;
 }
 
-@media (max-width: 1100px) {
+.joker {
+  font-size: 0.85rem;
+  color: #444;
+  margin-top: 0.4rem;
+}
+
+@media (max-width: 1300px) {
   .personnes-liste {
     position: static;
     width: 90%;
     max-width: 350px;
-    margin-top: 1rem;
+    margin: 0 auto;
+    margin-bottom: 1.5rem;
   }
 }
 </style>

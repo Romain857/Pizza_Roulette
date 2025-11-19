@@ -15,7 +15,7 @@
     <div class="pizza-section">
       <h4>🍶 Base crème</h4>
       <ul>
-        <li v-for="(pizza, index) in pizzasCreme" :key="'creme-' + index" class="pizza-item">
+        <li v-for="(pizza, index) in pizzasCreme" :key="'crème-' + index" class="pizza-item">
           <strong>{{ pizza.nom }}</strong>
           <p class="ingredients">{{ pizza.ingredients }}</p>
         </li>
@@ -26,10 +26,17 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { pizzas } from '@/data/Pizzas/pizzas_AuVieuxPressoir'
 
-const pizzasTomate = computed(() => pizzas.filter((p) => p.base === 'tomate'))
-const pizzasCreme = computed(() => pizzas.filter((p) => p.base === 'creme'))
+const props = defineProps<{
+  pizzas: {
+    nom: string
+    ingredients: string
+    base: string
+  }[]
+}>()
+
+const pizzasTomate = computed(() => props.pizzas.filter((p) => p.base === 'tomate'))
+const pizzasCreme = computed(() => props.pizzas.filter((p) => p.base === 'crème'))
 </script>
 
 <style scoped>

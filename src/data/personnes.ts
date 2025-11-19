@@ -2,26 +2,36 @@ export const personnes = [
   {
     nom: 'Romain',
     ingredientsDislikes: ['ananas'],
-    present: true
+    joker: 3,
   },
   {
     nom: 'Benjamin',
-    ingredientsDislikes: ['Jambon'],
-    present: true
+    ingredientsDislikes: ['lardon'],
+    joker: 1,
   },
   {
     nom: 'Gaël',
-    ingredientsDislikes: [],
-    present: true
-  },
-  {
-    nom: 'Hugues',
-    ingredientsDislikes: [],
-    present: true
+    ingredientsDislikes: ['trippe', 'andouille'],
+    joker: 3,
   },
   {
     nom: 'Pierre',
     ingredientsDislikes: [],
-    present: true
+    joker: 3,
+  },
+  {
+    nom: 'Roman',
+    ingredientsDislikes: [],
+    joker: 2,
+  },
+  {
+    nom: 'Emmanuel',
+    ingredientsDislikes: [],
+    joker: 3,
+  },
+  {
+    nom: 'Hervé',
+    ingredientsDislikes: [],
+    joker: 3,
   },
 ]

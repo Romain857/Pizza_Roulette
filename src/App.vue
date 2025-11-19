@@ -1,16 +1,17 @@
 <template>
   <div class="app-container">
-    <PersonnesList :personnes="personnes" />
+    <PizzeriaSelect v-model="selectedPizzeria" />
+    <PersonnesList v-model="selectedName" :personnes="personnes" />
 
     <div class="roulette-container">
-      <h2>🚢 Pizza Roulette aux Vieux Pressoir 🍕</h2>
+      <h2>🚢 Pizza Roulette – {{ nomPizzeria }} 🍕</h2>
 
       <div class="roulette-wrapper">
         <div class="arrow"></div>
         <div class="roulette-window">
           <div class="roulette-list" :style="{ transform: `translateY(-${position}px)` }">
             <div
-              v-for="(pizza, index) in [...pizzas, ...pizzas]"
+              v-for="(pizza, index) in [...filteredPizzas, ...filteredPizzas]"
               :key="index"
               class="roulette-item"
             >
@@ -33,21 +34,41 @@
       <div v-if="resultat" class="resultat">
         Tu as tiré la <strong> {{ resultat }} </strong> !
         <p class="ingredients">{{ ingredients }}</p>
+
+        <div v-if="personneSelectionnee" class="joker-info">
+          <template v-if="personneSelectionnee.joker > 0">
+            🎟️ Il te reste <strong>{{ personneSelectionnee.joker }}</strong> joker<span
+              v-if="personneSelectionnee.joker > 1"
+              >s</span
+            >.
+            <br />
+            Tu peux <strong>relancer</strong> ou <strong>prendre la pizza du jour</strong> 😄
+          </template>
+
+          <template v-else>
+            😈 Plus de joker…
+            <br />
+            <strong>Paye la tournée</strong> de boisson avoir et utiliser un joker !
+          </template>
+        </div>
       </div>
 
-      <PizzasList class="pizzas-liste" />
+      <PizzasList class="pizzas-liste" :pizzas="pizzasActives" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { pizzas } from '@/data/Pizzas/pizzas_AuVieuxPressoir'
-import { personnes as personnesData } from '@/data/personnes'
+import { computed, ref, watch } from 'vue'
+import PizzeriaSelect from '@/components/PizzeriaSelect.vue'
+import { pizzas as pizzasVieux } from '@/data/Pizzas/pizzas_AuVieuxPressoir'
+import { pizzas as pizzasChat } from '@/data/Pizzas/pizzas_LeChatQuiGuette'
 import PersonnesList from '@/components/PersonnesList.vue'
 import PizzasList from '@/components/PizzasList.vue'
+import { personnes as personnesData } from '@/data/personnes'
 
 const personnes = ref(personnesData)
+const selectedName = ref('')
 const position = ref(0)
 const resultat = ref('')
 const ingredients = ref('')
@@ -56,15 +77,44 @@ const enCours = ref(false)
 const itemHeight = 60
 const windowHeight = 300
 
+const selectedPizzeria = ref<'vieux' | 'chat'>('vieux')
+
+const pizzasActives = computed(() =>
+  selectedPizzeria.value === 'vieux' ? pizzasVieux : pizzasChat,
+)
+
+const nomPizzeria = computed(() => {
+  return selectedPizzeria.value === 'vieux' ? 'Aux Vieux Pressoir' : 'Le Chat Qui Guette'
+})
+
+const personneSelectionnee = computed(() =>
+  personnes.value.find((p) => p.nom === selectedName.value),
+)
+
+const filteredPizzas = computed(() => {
+  const p = personneSelectionnee.value
+
+  const baseList = p
+    ? pizzasActives.value.filter(
+        (pizza) =>
+          !p.ingredientsDislikes.some((bad) =>
+            pizza.ingredients.toLowerCase().includes(bad.toLowerCase()),
+          ),
+      )
+    : pizzasActives.value
+
+  return [...baseList].sort(() => Math.random() - 0.5)
+})
+
 const lancerRoulette = () => {
   if (enCours.value) return
   enCours.value = true
   resultat.value = ''
   ingredients.value = ''
 
-  const total = pizzas.length
-  const tours = 20
+  const total = filteredPizzas.value.length
   const randomIndex = Math.floor(Math.random() * total)
+  const tours = 20
   const centerOffset = (windowHeight - itemHeight) / 2
   const distance = (tours * total + randomIndex) * itemHeight - centerOffset
 
@@ -79,7 +129,7 @@ const lancerRoulette = () => {
     if (progress < 1) {
       requestAnimationFrame(animate)
     } else {
-      const pizzaChoisie = pizzas[randomIndex]
+      const pizzaChoisie = filteredPizzas.value[randomIndex]
       resultat.value = pizzaChoisie?.nom ?? ''
       ingredients.value = pizzaChoisie?.ingredients ?? ''
       enCours.value = false
@@ -88,6 +138,11 @@ const lancerRoulette = () => {
 
   requestAnimationFrame(animate)
 }
+
+watch(selectedName, () => {
+  resultat.value = ''
+  ingredients.value = ''
+})
 </script>
 
 <style scoped>
@@ -194,7 +249,17 @@ button:disabled {
   max-width: 400px;
 }
 
-@media (max-width: 1100px) {
+.joker-info {
+  margin-top: 0.5rem;
+  background: #fff7d1;
+  border-left: 4px solid #fbbf24;
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #7a5c00;
+}
+
+@media (max-width: 1300px) {
   .app-container {
     flex-direction: column;
     align-items: center;
