@@ -2,7 +2,7 @@ export const personnes = [
   {
     nom: 'Romain',
     ingredientsDislikes: ['ananas'],
-    joker: 3,
+    joker: 0,
     photo: '/images/personnes/romain.jpg',
   },
   {
@@ -19,7 +19,7 @@ export const personnes = [
       'andouille',
       'saucisse fumée',
     ],
-    joker: 1,
+    joker: 0,
     photo: '/images/personnes/benjamin.jpg',
   },
   {
@@ -43,7 +43,7 @@ export const personnes = [
   {
     nom: 'Pierre',
     ingredientsDislikes: [],
-    joker: 3,
+    joker: 0,
     photo: '/images/personnes/pierre.jpg',
   },
   {
