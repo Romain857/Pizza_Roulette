@@ -13,7 +13,6 @@ export const pizzas = [
     ingredients: 'saumon fumé, crème, noix de Saint-Jacques, origan, persillade',
   },
   { nom: 'Mamma', base: 'tomate', ingredients: 'chorizo, câpres, oignons, origan' },
-  { nom: 'Marguerite', base: 'tomate', ingredients: 'origan' },
   { nom: 'Cannibale', base: 'crème', ingredients: 'pommes de terre, bœuf haché, crème, origan' },
   { nom: 'Bolognaise', base: 'tomate', ingredients: 'champignons, bolognaise, crème, origan' },
   { nom: 'Réale', base: 'crème', ingredients: 'jambon, champignons, crème, origan' },
