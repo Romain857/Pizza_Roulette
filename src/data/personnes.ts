@@ -19,7 +19,7 @@ export const personnes = [
       'andouille',
       'saucisse fumée',
     ],
-    joker: 0,
+    joker: 1,
     photo: '/images/personnes/benjamin.jpg',
   },
   {
