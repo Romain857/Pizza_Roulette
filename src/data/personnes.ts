@@ -48,7 +48,7 @@ export const personnes = [
   },
   {
     nom: 'Emmanuel',
-    ingredientsDislikes: [],
+    ingredientsDislikes: ['cœur d’artichaut','gorgonzola','chèvre'],
     joker: 3,
     photo: '/images/personnes/emmanuel.gif',
   },
