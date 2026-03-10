@@ -18,6 +18,7 @@ export const personnes = [
       'camembert',
       'andouille',
       'saucisse fumée',
+      'Saint-Jacques',
     ],
     joker: 1,
     photo: '/images/personnes/benjamin.jpg',
@@ -63,5 +64,11 @@ export const personnes = [
     ingredientsDislikes: [],
     joker: 3,
     photo: '/images/personnes/herve.jpg',
+  },
+  {
+    nom: 'Romane',
+    ingredientsDislikes: ['saumon', 'gorgonzola', 'anchois', 'ananas'],
+    joker: 3,
+    photo: '/images/personnes/romane.png',
   },
 ]
