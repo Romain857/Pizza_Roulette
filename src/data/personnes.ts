@@ -49,7 +49,7 @@ export const personnes = [
   },
   {
     nom: 'Emmanuel',
-    ingredientsDislikes: ['cœur d’artichaut','gorgonzola','chèvre'],
+    ingredientsDislikes: ['cœur d’artichaut', 'gorgonzola', 'chèvre'],
     joker: 3,
     photo: '/images/personnes/emmanuel.gif',
   },
@@ -70,5 +70,17 @@ export const personnes = [
     ingredientsDislikes: ['saumon', 'gorgonzola', 'anchois', 'ananas'],
     joker: 3,
     photo: '/images/personnes/romane.png',
+  },
+  {
+    nom: 'Quentin',
+    ingredientsDislikes: ['ananas'],
+    joker: 3,
+    photo: '/images/personnes/quentin.png',
+  },
+  {
+    nom: 'Alexandre',
+    ingredientsDislikes: [],
+    joker: 3,
+    photo: '/images/personnes/alexandre.png',
   },
 ]
