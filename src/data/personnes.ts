@@ -75,12 +75,12 @@ export const personnes = [
     nom: 'Quentin',
     ingredientsDislikes: ['ananas'],
     joker: 3,
-    photo: '/images/personnes/quentin.png',
+    photo: '/images/personnes/quentin.jpg',
   },
   {
     nom: 'Alexandre',
     ingredientsDislikes: [],
     joker: 3,
-    photo: '/images/personnes/alexandre.png',
+    photo: '/images/personnes/alexandre.jpg',
   },
 ]
