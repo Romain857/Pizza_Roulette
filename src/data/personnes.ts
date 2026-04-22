@@ -62,7 +62,7 @@ export const personnes = [
   {
     nom: 'Hervé',
     ingredientsDislikes: [],
-    joker: 3,
+    joker: 1,
     photo: '/images/personnes/herve.jpg',
   },
   {
@@ -74,7 +74,7 @@ export const personnes = [
   {
     nom: 'Quentin',
     ingredientsDislikes: ['ananas'],
-    joker: 3,
+    joker: 2,
     photo: '/images/personnes/quentin.jpg',
   },
   {
