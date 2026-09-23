@@ -95,4 +95,10 @@ export const personnes = [
     joker: 3,
     photo: ''
   },
+  {
+    nom: 'Clémence ',
+    ingredientsDislikes: [ 'ananas'],
+    joker: 3,
+    photo: ''
+  },
 ]
