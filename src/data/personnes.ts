@@ -83,4 +83,16 @@ export const personnes = [
     joker: 3,
     photo: '/images/personnes/alexandre.jpg',
   },
+  {
+    nom: 'Nicolas M',
+    ingredientsDislikes: ['ananas'],
+    joker: 3,
+    photo: '',
+  },
+  {
+    nom: 'Arthur',
+    ingredientsDislikes: ['thon', 'saumon', 'chorizo', 'merguez', 'jambon blanc', 'viande de kebab', 'Saint-Jacques', 'magret de canard fumé', 'jambon de pays'],
+    joker: 3,
+    photo: ''
+  },
 ]
